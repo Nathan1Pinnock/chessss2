@@ -15,20 +15,6 @@ def get_user_move():
     except ValueError:
         print("Invalid format. Example: E2 E4")
         return get_user_move()
-    
-def update_board(move):
-    # initialize the starting position of the chess board
-    board = chess.Board()
-    
-    # convert the input move to a valid move format
-    from_square, to_square = move.split()
-    from_square = chess.parse_square(from_square)
-    to_square = chess.parse_square(to_square)
-    move = chess.Move(from_square, to_square)
-    
-    # make the move on the board and output the FEN notation
-    board.push(move)
-    print(board.fen())
 
 # Returns a valid move based on the users input.
 def get_valid_user_move(board):

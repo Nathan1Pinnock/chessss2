@@ -21,43 +21,48 @@ class Piece():
     def get_possible_diagonal_moves(self, board):
         moves = []
 
+        # Top-right direction
         for i in range(1, 8):
-            if (not board.in_bounds(self.x+i, self.y+i)):
+            if not board.in_bounds(self.x + i, self.y + i):
                 break
 
-            piece = board.get_piece(self.x+i, self.y+i)
-            moves.append(self.get_move(board, self.x+i, self.y+i))
-            if (piece != 0):
+            piece = board.get_piece(self.x + i, self.y + i)
+            moves.append(self.get_move(board, self.x + i, self.y + i))
+            if piece != 0:
                 break
 
+        # Bottom-right direction
         for i in range(1, 8):
-            if (not board.in_bounds(self.x+i, self.y-i)):
+            if not board.in_bounds(self.x + i, self.y - i):
                 break
 
-            piece = board.get_piece(self.x+i, self.y-i)
-            moves.append(self.get_move(board, self.x+i, self.y-i))
-            if (piece != 0):
+            piece = board.get_piece(self.x + i, self.y - i)
+            moves.append(self.get_move(board, self.x + i, self.y - i))
+            if piece != 0:
                 break
 
+        # Bottom-left direction
         for i in range(1, 8):
-            if (not board.in_bounds(self.x-i, self.y-i)):
+            if not board.in_bounds(self.x - i, self.y - i):
                 break
 
-            piece = board.get_piece(self.x-i, self.y-i)
-            moves.append(self.get_move(board, self.x-i, self.y-i))
-            if (piece != 0):
+            piece = board.get_piece(self.x - i, self.y - i)
+            moves.append(self.get_move(board, self.x - i, self.y - i))
+            if piece != 0:
                 break
 
+        # Top-left direction
         for i in range(1, 8):
-            if (not board.in_bounds(self.x-i, self.y+i)):
+            if not board.in_bounds(self.x - i, self.y + i):
                 break
 
-            piece = board.get_piece(self.x-i, self.y+i)
-            moves.append(self.get_move(board, self.x-i, self.y+i))
-            if (piece != 0):
+            piece = board.get_piece(self.x - i, self.y + i)
+            moves.append(self.get_move(board, self.x - i, self.y + i))
+            if piece != 0:
                 break
 
         return self.remove_null_from_list(moves)
+
 
     # Returns all horizontal moves for this piece. This should therefore only
     # be used by the Rooks and Queen since they are the only pieces that can
@@ -68,30 +73,29 @@ class Piece():
         # Moves to the right of the piece.
         for i in range(1, 8 - self.x):
             piece = board.get_piece(self.x + i, self.y)
-            moves.append(self.get_move(board, self.x+i, self.y))
-
-            if (piece != 0):
+            moves.append(self.get_move(board, self.x + i, self.y))
+            if piece != 0:
                 break
 
         # Moves to the left of the piece.
         for i in range(1, self.x + 1):
             piece = board.get_piece(self.x - i, self.y)
-            moves.append(self.get_move(board, self.x-i, self.y))
-            if (piece != 0):
+            moves.append(self.get_move(board, self.x - i, self.y))
+            if piece != 0:
                 break
 
         # Downward moves.
         for i in range(1, 8 - self.y):
             piece = board.get_piece(self.x, self.y + i)
-            moves.append(self.get_move(board, self.x, self.y+i))
-            if (piece != 0):
+            moves.append(self.get_move(board, self.x, self.y + i))
+            if piece != 0:
                 break
 
         # Upward moves.
         for i in range(1, self.y + 1):
             piece = board.get_piece(self.x, self.y - i)
-            moves.append(self.get_move(board, self.x, self.y-i))
-            if (piece != 0):
+            moves.append(self.get_move(board, self.x, self.y - i))
+            if piece != 0:
                 break
 
         return self.remove_null_from_list(moves)
@@ -144,14 +148,14 @@ class Knight(Piece):
     def get_possible_moves(self, board):
         moves = []
 
-        moves.append(self.get_move(board, self.x+2, self.y+1))
-        moves.append(self.get_move(board, self.x-1, self.y+2))
-        moves.append(self.get_move(board, self.x-2, self.y+1))
-        moves.append(self.get_move(board, self.x+1, self.y-2))
-        moves.append(self.get_move(board, self.x+2, self.y-1))
-        moves.append(self.get_move(board, self.x+1, self.y+2))
-        moves.append(self.get_move(board, self.x-2, self.y-1))
-        moves.append(self.get_move(board, self.x-1, self.y-2))
+        moves.append(self.get_move(board, self.x + 2, self.y + 1))
+        moves.append(self.get_move(board, self.x - 1, self.y + 2))
+        moves.append(self.get_move(board, self.x - 2, self.y + 1))
+        moves.append(self.get_move(board, self.x + 1, self.y - 2))
+        moves.append(self.get_move(board, self.x + 2, self.y - 1))
+        moves.append(self.get_move(board, self.x + 1, self.y + 2))
+        moves.append(self.get_move(board, self.x - 2, self.y - 1))
+        moves.append(self.get_move(board, self.x - 1, self.y - 2))
 
         return self.remove_null_from_list(moves)
 

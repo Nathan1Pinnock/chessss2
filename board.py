@@ -23,45 +23,46 @@ class Board:
     @classmethod
     def new(cls):
         chess_pieces = [[0 for x in range(Board.WIDTH)] for y in range(Board.HEIGHT)]
+
         # Create pawns.
         for x in range(Board.WIDTH):
-            chess_pieces[x][Board.HEIGHT-2] = pieces.Pawn(x, Board.HEIGHT-2, pieces.Piece.WHITE)
+            chess_pieces[x][Board.HEIGHT - 2] = pieces.Pawn(x, Board.HEIGHT - 2, pieces.Piece.WHITE)
             chess_pieces[x][1] = pieces.Pawn(x, 1, pieces.Piece.BLACK)
 
         # Create rooks.
-        chess_pieces[0][Board.HEIGHT-1] = pieces.Rook(0, Board.HEIGHT-1, pieces.Piece.WHITE)
-        chess_pieces[Board.WIDTH-1][Board.HEIGHT-1] = pieces.Rook(Board.WIDTH-1, Board.HEIGHT-1, pieces.Piece.WHITE)
+        chess_pieces[0][Board.HEIGHT - 1] = pieces.Rook(0, Board.HEIGHT - 1, pieces.Piece.WHITE)
+        chess_pieces[Board.WIDTH - 1][Board.HEIGHT - 1] = pieces.Rook(Board.WIDTH - 1, Board.HEIGHT - 1, pieces.Piece.WHITE)
         chess_pieces[0][0] = pieces.Rook(0, 0, pieces.Piece.BLACK)
-        chess_pieces[Board.WIDTH-1][0] = pieces.Rook(Board.WIDTH-1, 0, pieces.Piece.BLACK)
+        chess_pieces[Board.WIDTH - 1][0] = pieces.Rook(Board.WIDTH - 1, 0, pieces.Piece.BLACK)
 
         # Create Knights.
-        chess_pieces[1][Board.HEIGHT-1] = pieces.Knight(1, Board.HEIGHT-1, pieces.Piece.WHITE)
-        chess_pieces[Board.WIDTH-2][Board.HEIGHT-1] = pieces.Knight(Board.WIDTH-2, Board.HEIGHT-1, pieces.Piece.WHITE)
+        chess_pieces[1][Board.HEIGHT - 1] = pieces.Knight(1, Board.HEIGHT - 1, pieces.Piece.WHITE)
+        chess_pieces[Board.WIDTH - 2][Board.HEIGHT - 1] = pieces.Knight(Board.WIDTH - 2, Board.HEIGHT - 1, pieces.Piece.WHITE)
         chess_pieces[1][0] = pieces.Knight(1, 0, pieces.Piece.BLACK)
-        chess_pieces[Board.WIDTH-2][0] = pieces.Knight(Board.WIDTH-2, 0, pieces.Piece.BLACK)
+        chess_pieces[Board.WIDTH - 2][0] = pieces.Knight(Board.WIDTH - 2, 0, pieces.Piece.BLACK)
 
         # Create Bishops.
-        chess_pieces[2][Board.HEIGHT-1] = pieces.Bishop(2, Board.HEIGHT-1, pieces.Piece.WHITE)
-        chess_pieces[Board.WIDTH-3][Board.HEIGHT-1] = pieces.Bishop(Board.WIDTH-3, Board.HEIGHT-1, pieces.Piece.WHITE)
+        chess_pieces[2][Board.HEIGHT - 1] = pieces.Bishop(2, Board.HEIGHT - 1, pieces.Piece.WHITE)
+        chess_pieces[Board.WIDTH - 3][Board.HEIGHT - 1] = pieces.Bishop(Board.WIDTH - 3, Board.HEIGHT - 1, pieces.Piece.WHITE)
         chess_pieces[2][0] = pieces.Bishop(2, 0, pieces.Piece.BLACK)
-        chess_pieces[Board.WIDTH-3][0] = pieces.Bishop(Board.WIDTH-3, 0, pieces.Piece.BLACK)
+        chess_pieces[Board.WIDTH - 3][0] = pieces.Bishop(Board.WIDTH - 3, 0, pieces.Piece.BLACK)
 
         # Create King & Queen.
-        chess_pieces[4][Board.HEIGHT-1] = pieces.King(4, Board.HEIGHT-1, pieces.Piece.WHITE)
-        chess_pieces[3][Board.HEIGHT-1] = pieces.Queen(3, Board.HEIGHT-1, pieces.Piece.WHITE)
-        chess_pieces[4][0] = pieces.King(4, 0, pieces.Piece.BLACK)
+        chess_pieces[3][Board.HEIGHT - 1] = pieces.Queen(3, Board.HEIGHT - 1, pieces.Piece.WHITE)
+        chess_pieces[4][Board.HEIGHT - 1] = pieces.King(4, Board.HEIGHT - 1, pieces.Piece.WHITE)
         chess_pieces[3][0] = pieces.Queen(3, 0, pieces.Piece.BLACK)
+        chess_pieces[4][0] = pieces.King(4, 0, pieces.Piece.BLACK)
 
         return cls(chess_pieces, False, False)
+
 
     def get_possible_moves(self, color):
         moves = []
         for x in range(Board.WIDTH):
             for y in range(Board.HEIGHT):
                 piece = self.chesspieces[x][y]
-                if (piece != 0):
-                    if (piece.color == color):
-                        moves += piece.get_possible_moves(self)
+                if piece != 0 and piece.color == color:
+                    moves += piece.get_possible_moves(self)
 
         return moves
 
