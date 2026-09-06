@@ -19,4 +19,4 @@ Type moves as squares, e.g. `e2 e4`.
 - `pieces.py` – piece types and their move rules
 - `move.py` – a move
 
-Written in 2023 while learning how game-tree search works.
+Written in 2023 while learning how game-tree search works. in preparation for my NEA project.
